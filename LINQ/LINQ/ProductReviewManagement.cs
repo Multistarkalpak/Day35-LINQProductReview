@@ -12,7 +12,7 @@ namespace LINQProductReview
         {
             Console.WriteLine("\nSorted Order");
             //here we are using query syntax
-            //here we are retriving the product review based on the higest rating for that we are sorting the list in desending oredr
+            //here we are retriving the product review based on the higest rating for that we are sortin gthe list in desending oredr
             List<ProductReview> sortedList = (from product in list orderby product.Rating descending select product).ToList();
             Program.IterateOverProductReview(sortedList);
             //after sortig we are taking only top 3 so thas why we are usigng take method for the sroted order
@@ -21,6 +21,16 @@ namespace LINQProductReview
             Program.IterateOverProductReview(top4res);
 
 
+        }
+        //UC3
+        public static void RetriveBasedOnProductIdAndRatig(List<ProductReview> list)
+        {
+            Console.WriteLine("\nretriving the productid and rating");
+            //this is using the query synatx
+            //var res = list.Where(p => p.Rating > 3 && (p.ProductId == 1 || p.ProductId == 4 || p.ProductId == 9));
+            //this for the method syntax
+            var res1 = (from p in list where p.Rating > 3 && (p.ProductId.Equals(1) || p.ProductId.Equals(4) || p.ProductId.Equals(9)) select p).ToList();
+            Program.IterateOverProductReview(res1);
         }
     }
 }
